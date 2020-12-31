@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class level : MonoBehaviour
 {
+    private const float playerPositionX = 0f;
+    private int obstaclesPassed = 0;
+    private static level instance;
     private float gapSize;
     private int obstaclesSpawned = 0;
     private float maxTimeToSpawn = 2f;
@@ -23,6 +26,18 @@ public class level : MonoBehaviour
         hard,
         veryHard,
         impossible,
+    }
+    public static level getInstance()
+    {
+        return instance;
+    }
+    public int getObstaclesSpawned()
+    {
+        return obstaclesSpawned;
+    }
+    public int getObstaclespassed()
+    {
+        return obstaclesPassed;
     }
     private void setDifficulty(difficulty d)
     {
@@ -82,8 +97,14 @@ public class level : MonoBehaviour
     {
         for(int i = 0; i < obstacleList.Count; i++)
         {
+            bool obstacleNotPassed = obstacleList[i].returnposition() > playerPositionX;
+            
             obstacleList[i].move();
-            if(obstacleList[i].returnposition() < destroyLocation)
+            if (obstacleNotPassed && obstacleList[i].returnposition()<playerPositionX)
+            {
+                obstaclesPassed++;
+            }
+            if (obstacleList[i].returnposition() < destroyLocation)
             {
                 obstacleList[i].destroyObstacle();
                 obstacleList.Remove(obstacleList[i]);
@@ -91,8 +112,10 @@ public class level : MonoBehaviour
             }
         }
     }
+
     private void Awake()
     {
+        instance = this;
         obstacleList = new List<obstacle>();
         timeToSpawn = maxTimeToSpawn;
         setDifficulty(difficulty.easy);
