@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class level : MonoBehaviour
 {
+    private state currentState; 
+
     private const float playerPositionX = 0f;
     private int obstaclesPassed = 0;
     private static level instance;
@@ -26,6 +29,12 @@ public class level : MonoBehaviour
         hard,
         veryHard,
         impossible,
+    }
+    private enum state
+    {
+        waiting,
+        playing,
+        dead,
     }
     public static level getInstance()
     {
@@ -119,20 +128,41 @@ public class level : MonoBehaviour
         obstacleList = new List<obstacle>();
         timeToSpawn = maxTimeToSpawn;
         setDifficulty(difficulty.easy);
+        currentState = state.waiting;
     }
     private void Start()
     {
         //createGapObstacle(50f, 10f, 10f);
         //createGapObstacle(80f, 20f, 20f);
         //createGapObstacle(50f, 0f, 5f);
-
+        jooti.returnJooti().onDied += jootiOnDied;
         
     }
+
+    private void jootiOnDied(object sender, System.EventArgs e)
+    {
+        currentState = state.dead;
+        
+    }
+
     private void Update()
     {
-        obstacleMovement();
-        obstacleSpawnHandler();
+        if(currentState == state.waiting)
+        {
+            jooti.returnJooti().onStartPlaying += jootiOnStartPlaying;
+        }
+        if (currentState == state.playing)
+        {
+            obstacleMovement();
+            obstacleSpawnHandler();
+        }
     }
+
+    private void jootiOnStartPlaying(object sender, System.EventArgs e)
+    {
+        currentState = state.playing;
+    }
+
     public void obstacleSpawnHandler()
     {
         
