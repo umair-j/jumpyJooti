@@ -10,6 +10,7 @@ public static class gameLoader
     {
         gameScene,
         loading,
+        startMenu,
     }
     public static void loadScene(scene s)
     {

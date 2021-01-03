@@ -7,10 +7,16 @@ public class gameController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        Debug.Log("gameControllerScript");
-        //GameObject obj = new GameObject("legDown", typeof(SpriteRenderer));
-        //obj.GetComponent<SpriteRenderer>().sprite = gameAssetsScript.getGameAssetsScript().legDown;
+
+        Score.Start();
+        
+        
+        //PlayerPrefs.SetInt("highscore", 3);
+
+       // PlayerPrefs.Save();
+        //Score.setHighscore(20);
     }
+    
 
     
 }

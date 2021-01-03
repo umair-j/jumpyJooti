@@ -57,12 +57,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\gameOver.cs" />
     <Compile Include="Assets\Scripts\level.cs" />
+    <Compile Include="Assets\Scripts\loadingUpdate.cs" />
     <Compile Include="Assets\Scripts\gameAssetsScript.cs" />
     <Compile Include="Assets\Scripts\scoreText.cs" />
     <Compile Include="Assets\Scripts\jooti.cs" />
     <Compile Include="Assets\Scripts\gameController.cs" />
     <Compile Include="Assets\Scripts\gameLoader.cs" />
-    <Compile Include="Assets\Scripts\loadingUpdate.cs" />
+    <Compile Include="Assets\Scripts\Score.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
