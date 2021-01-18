@@ -63,6 +63,13 @@ public class jooti : MonoBehaviour
             case State.dead:
                 break;
         }
+        if(this.transform.position.y>50 || this.transform.position.y < -50)
+        {
+            if (onDied != null)
+            {
+                onDied(this, EventArgs.Empty);
+            }
+        }
     }
     private void jump()
     {

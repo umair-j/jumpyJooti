@@ -53,19 +53,19 @@ public class level : MonoBehaviour
         switch (d)
         {
             case difficulty.superEasy:
-                gapSize = 30f;
-                break;
-            case difficulty.easy:
-                gapSize = 27f;
-                break;
-            case difficulty.medium:
                 gapSize = 24f;
                 break;
-            case difficulty.hard:
+            case difficulty.easy:
+                gapSize = 22f;
+                break;
+            case difficulty.medium:
                 gapSize = 20f;
                 break;
+            case difficulty.hard:
+                gapSize = 18f;
+                break;
             case difficulty.veryHard:
-                gapSize = 17f;
+                gapSize = 16f;
                 break;
             case difficulty.impossible:
                 gapSize = 14f;
@@ -74,25 +74,25 @@ public class level : MonoBehaviour
     }
     private difficulty getDifficulty()
     {
-        if(obstaclesSpawned < 10)
+        if(obstaclesSpawned < 5)
         {
             return difficulty.superEasy;
         }
-        else if(obstaclesSpawned < 20)
+        else if(obstaclesSpawned < 10)
         {
             return difficulty.easy;
         }
 
-        else if (obstaclesSpawned < 30)
+        else if (obstaclesSpawned < 15)
         {
             return difficulty.medium;
         }
 
-        else if (obstaclesSpawned < 40)
+        else if (obstaclesSpawned < 20)
         {
             return difficulty.hard;
         }
-        else if (obstaclesSpawned < 50)
+        else if (obstaclesSpawned < 25)
         {
             return difficulty.veryHard;
         }
